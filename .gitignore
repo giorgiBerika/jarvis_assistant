@@ -1,0 +1,10 @@
+
+__pycache__/
+
+.env
+.venv/
+
+clien_secret.json 
+
+*.db 
+
