@@ -2,13 +2,13 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field 
 
 from groq import Groq
-from ..config import GROQ_API_KEY
+from config import GROQ_API_KEY
 
 @dataclass
 class ToolCall:
     id: str 
     name: str 
-    arguements: str # raw JSON string , same as MCP server expects
+    arguments: str # raw JSON string , same as MCP server expects
 
 
 @dataclass
@@ -40,7 +40,7 @@ class GroqLLMClient(LLMClient):
         raw = response.choices[0].message 
 
         tool_calls = [
-            ToolCall(id=tc.id, name=tc.function.name, arguements=tc.function.arguments)
+            ToolCall(id=tc.id, name=tc.function.name, arguments=tc.function.arguments)
             for tc in (raw.tool_calls or [])
         ]
 

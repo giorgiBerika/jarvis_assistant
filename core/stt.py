@@ -8,9 +8,9 @@ from config import GROQ_API_KEY, INPUT_MODE
 client = Groq(api_key=GROQ_API_KEY)
 
 def record_audio(seconds: int = 6, rate: int = 44100) -> str:
-
-
-    recording = sd.rect(int(seconds * rate), samplerate=rate, channels=1, dtype=np.int16)
+    input("Press Enter and speak...")
+    print(f"Listening... speak now ({seconds}s)")
+    recording = sd.rec(int(seconds * rate), samplerate=rate, channels=1, dtype=np.int16)
     sd.wait()
 
     print("Done recording!")
@@ -23,6 +23,7 @@ def record_audio(seconds: int = 6, rate: int = 44100) -> str:
             file=f
         )
 
+    print(f"You said: {result.text}")
     return result.text
 
 
